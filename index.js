@@ -1,13 +1,33 @@
 // 1 - Tester le lien de l'API dans le navigateur (https://restcountries.com/v3.1/all)
 
 // 2 - Créer une fonction pour "fetcher" les données, afficher les données dans la console.
-
 // 3 - Passer les données à une variable
+const container = document.querySelector(".countries-container");
+let countries = [];
+const fetchCountry = async () => {
+  await fetch("https://restcountries.com/v3.1/all")
+    .then((res) => res.json())
+    // .then((data) => console.log(data));
+    .then((data) => (countries = data));
+
+  console.log(countries);
+  // container.innerHTML = countries[0].name.common;
+  // container.innerHTML += countries[0].flag;
+  // container.innerHTML += countries[0].capital;
+  // container.innerHTML += countries[0].population;
+};
+fetchCountry();
+
+const display = async () => {
+  await fetchCountry();
+  console.log("ok");
+};
+display();
 
 // 4 - Créer une fonction d'affichage, et paramétrer l'affichage des cartes de chaque pays grace à la méthode MAP
 
 // 5 - Récupérer ce qui est tapé dans l'input et filtrer (avant le map) les données
-coutry.name.includes(inputSearch.value);
+// coutry.name.includes(inputSearch.value);
 
 // 6 - Avec la méthode Slice gérer le nombre de pays affichés (inputRange.value)
 
