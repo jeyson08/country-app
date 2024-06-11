@@ -7,23 +7,25 @@ let countries = [];
 const fetchCountry = async () => {
   await fetch("https://restcountries.com/v3.1/all")
     .then((res) => res.json())
-    // .then((data) => console.log(data));
     .then((data) => (countries = data));
 
   console.log(countries);
-  // container.innerHTML = countries[0].name.common;
-  // container.innerHTML += countries[0].flag;
-  // container.innerHTML += countries[0].capital;
-  // container.innerHTML += countries[0].population;
 };
 fetchCountry();
 
-const display = async () => {
+const displayCountry = async () => {
   await fetchCountry();
-  console.log("ok");
+  container.innerHTML = countries.map((country) => {
+    `
+    <img src="${country.flag}" alt="${country.name.common}">
+    <h2>${country.name.common}</h2>
+    <h3>${country.capital[0]}</h3>
+    <p>Population : ${country.population}</p>
+    `;
+  });
 };
-display();
 
+displayCountry();
 // 4 - Créer une fonction d'affichage, et paramétrer l'affichage des cartes de chaque pays grace à la méthode MAP
 
 // 5 - Récupérer ce qui est tapé dans l'input et filtrer (avant le map) les données
